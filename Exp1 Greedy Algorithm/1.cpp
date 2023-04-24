@@ -1,7 +1,7 @@
 /*
  * @Author: KiyuAshes
  * @Date: 2023-04-16 18:21:27
- * @LastEditTime: 2023-04-16 19:13:40
+ * @LastEditTime: 2023-04-24 01:03:36
  * @Description: USC OJ 1388 集邮票
  * @E-mail: kiyuashes@stu.usc.edu.cn
  * Copyright (c) 2023 by KiyuAshes, All Rights Reserved. 
@@ -19,7 +19,7 @@ typedef struct stamp {
 
 int main() {
   long n, m;
-  int i = 0, l = INT_MAX, r = INT_MIN, total = 0, mid, used;
+  int i = 0, l = INT_MAX, r = INT_MAX, total = 0, mid, used;
   stamp stp[100050];
 
   scanf("%ld%ld", &n, &m);
@@ -32,7 +32,7 @@ int main() {
 
   for (i = 0; i < n; i++) {
     scanf("%d", &stp[i].max);
-    if (stp[i].num + stp[i].max > r)
+    if (stp[i].num + stp[i].max < r)
       r = stp[i].num + stp[i].max;
   }
 
@@ -41,6 +41,7 @@ int main() {
     used = 0;
 
     for (i = 0; i < n; i++) {
+
       if (stp[i].num > mid)
         continue;
 
@@ -48,6 +49,8 @@ int main() {
         break;
 
       used += mid - stp[i].num;
+
+
     }
 
     if (i == n && used <= m) {
